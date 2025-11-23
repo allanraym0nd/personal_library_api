@@ -3,10 +3,10 @@
 const jwt = require('jsonwebtoken') 
 
 const authMiddleware = async(req,res,next) => {
-    const authHeader = req.header.authorization
+    const authHeader = req.headers.authorization
 
-    if(!authHeader || !authHeader.startsWith("Bearer")){
-        return res.status().json({error: "Unauthorized. Token not provided"})
+    if(!authHeader || !authHeader.startsWith("Bearer ")){
+        return res.status(401).json({error: "Unauthorized. Token not provided"})
     }
 
     const authToken = authHeader.split(" ")[1]
