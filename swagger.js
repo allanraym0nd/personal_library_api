@@ -34,11 +34,14 @@ const options = {
     apis: [path.join(__dirname, "./routes/*.js")]
 }
 
-const swaggerSpec = swaggerJSdoc(options) 
+const swaggerSpec = swaggerJSdoc(options) // This takes your options + the scanned route comments → and generates an OpenAPI JSON object.
 
 const setUpSwagger = (app) => {
     app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec))
 
 }
+
+//swaggerUi.setup(swaggerSpec) → generates the live documentation UI.
+// swaggerUi.serve → middlewares to serve the UI assets.
 
 module.exports = setUpSwagger
